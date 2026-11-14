@@ -30,9 +30,10 @@
 #' @return `news` with cleaned `title` and `text` columns.
 #' @examples
 #' news <- as_news(data.frame(
-#'   title = "[속보] 정부, 예산안 발표",
-#'   text = "(서울=연합뉴스) 홍길동 기자 = 정부가 발표했다. hong@example.com",
-#'   date = "2024-01-02", source = "연합뉴스"
+#'   title = "[\uc18d\ubcf4] \uc815\ubd80, \uc608\uc0b0\uc548 \ubc1c\ud45c",
+#'   text = paste("(\uc11c\uc6b8=\uc5f0\ud569\ub274\uc2a4) \ud64d\uae38\ub3d9 \uae30\uc790 =",
+#'                "\uc815\ubd80\uac00 \ubc1c\ud45c\ud588\ub2e4. hong@example.com"),
+#'   date = "2024-01-02", source = "\uc5f0\ud569\ub274\uc2a4"
 #' ))
 #' clean_news(news)[, c("title", "text")]
 #' @export

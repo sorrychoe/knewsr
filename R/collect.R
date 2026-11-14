@@ -20,7 +20,7 @@
 #'   `query`, `originallink` and `link`.
 #' @examples
 #' \dontrun{
-#' news <- collect_naver("기준금리", n = 300)
+#' news <- collect_naver("\uae30\uc900\uae08\ub9ac", n = 300)
 #' tokenize_ko(news, field = "text")
 #' }
 #' @export
