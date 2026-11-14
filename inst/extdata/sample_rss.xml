@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"  xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/">
+	<channel>
+		<title><![CDATA[연합뉴스 최신기사]]></title>
+		<link>https://www.yna.co.kr/news</link>
+		<atom:link href="https://www.yna.co.kr/rss/news.xml" rel="self" type="application/rss+xml" />
+		<description><![CDATA[연합뉴스 실시간 최신뉴스입니다]]></description>
+		<language>ko-KR</language>
+		<copyright><![CDATA[저작권자(c) 연합뉴스, 무단 전재-재배포, AI 학습 및 활용 금지]]></copyright>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+		<lastBuildDate>Sat, 14 Nov 2026 23:24:42 +0900</lastBuildDate>
+		<pubDate>Sat, 14 Nov 2026 23:24:42 +0900</pubDate>
+		<item>
+			<title><![CDATA[메타엠 고객상담 시스템 해킹…전화번호·상담내용 유출 확인]]></title>
+			<link>https://www.yna.co.kr/view/AKR20261114049400017</link>
+			<guid isPermaLink="true">https://www.yna.co.kr/view/AKR20261114049400017</guid>
+			<pubDate>Sat, 14 Nov 2026 23:24:42 +0900</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[美교통장관 "항공운항 서서히 정상화…일부 지연·결항 지속"]]></title>
+			<link>https://www.yna.co.kr/view/AKR20261114049500071</link>
+			<guid isPermaLink="true">https://www.yna.co.kr/view/AKR20261114049500071</guid>
+			<pubDate>Sat, 14 Nov 2026 23:24:15 +0900</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[모레노호, 사우디전 패배 곱씹으며 회복 훈련…'실수를 줄여라!']]></title>
+			<link>https://www.yna.co.kr/view/AKR20261114049200007</link>
+			<guid isPermaLink="true">https://www.yna.co.kr/view/AKR20261114049200007</guid>
+			<pubDate>Sat, 14 Nov 2026 23:15:16 +0900</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[이탈리아, 메타에 1조 과징금…"이용자 사진에 무단 접근"]]></title>
+			<link>https://www.yna.co.kr/view/AKR20261114049000109</link>
+			<guid isPermaLink="true">https://www.yna.co.kr/view/AKR20261114049000109</guid>
+			<pubDate>Sat, 14 Nov 2026 22:26:07 +0900</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[한국 야구, 대만 꺾고 APBC 결승 진출…15일 일본과 재격돌]]></title>
+			<link>https://www.yna.co.kr/view/AKR20261114031700007</link>
+			<guid isPermaLink="true">https://www.yna.co.kr/view/AKR20261114031700007</guid>
+			<pubDate>Sat, 14 Nov 2026 22:02:36 +0900</pubDate>
+		</item>
+	</channel>
+</rss>

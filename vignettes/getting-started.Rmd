@@ -1,0 +1,126 @@
+---
+title: "Getting started with knewsr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with knewsr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+has_ggplot <- requireNamespace("ggplot2", quietly = TRUE)
+```
+
+knewsr는 한국어 뉴스 데이터를 **표준 스키마 → 전처리 → 토큰 테이블 → 기초 통계**
+순서로 다룹니다. 모든 결과는 tibble 또는 sparse matrix입니다.
+
+```{r}
+library(knewsr)
+```
+
+## 1. 읽기
+
+모든 입력은 표준 스키마(`doc_id`, `date`, `source`, `title`, `text`, `keyword`)로 바뀝니다.
+
+파일은 `read_news()`로 읽습니다. Excel, CSV/TSV(UTF-8, CP949), JSON, JSONL을 받고,
+폴더를 주면 안의 파일을 모두 읽어 합칩니다. BigKinds 내보내기도 같은 함수로 읽습니다.
+
+```{r}
+path <- system.file("extdata", "bigkinds_sample.xlsx", package = "knewsr")
+read_news(path)
+```
+
+이미 메모리에 있는 data.frame은 `as_news()`로 바꿉니다. 흔한 컬럼명(`headline`, `body`,
+`content`, `pubDate`, `press` 등)은 자동으로 찾고, 찾은 결과를 메시지로 알려 줍니다.
+자동 인식이 틀리면 `text = "본문열"`처럼 직접 지정합니다.
+
+```{r}
+other <- data.frame(headline = "정부, 예산안 발표", body = "정부가 내년 예산안을 발표했다.",
+                    pubDate = "2024.01.02", press = "A일보")
+as_news(other)
+
+news <- as_news(president_lee_2026_08)
+news
+```
+
+## 1-1. 수집
+
+네이버 뉴스 검색 API(제목·요약·날짜·링크)와 RSS/Atom 피드에서 바로 수집할 수 있습니다.
+
+```{r, eval = FALSE}
+# NAVER_CLIENT_ID, NAVER_CLIENT_SECRET 환경변수 필요
+naver <- collect_naver("기준금리", n = 300)
+```
+
+```{r, eval = requireNamespace("xml2", quietly = TRUE)}
+collect_rss(system.file("extdata", "sample_rss.xml", package = "knewsr"))
+```
+
+## 2. 전처리
+
+`clean_news()`는 말머리(`[속보]`), 기자 바이라인, 이메일, URL, 특수문자를 지웁니다.
+
+```{r}
+news <- clean_news(news)
+summarise_corpus(news, by = "source")
+```
+
+## 3. 토큰화
+
+기본값은 BigKinds `keyword` 컬럼을 쓰는 것이라 형태소 분석기가 필요 없습니다.
+`keep`으로 지정한 컬럼은 토큰 테이블에 함께 붙습니다.
+
+```{r}
+tokens <- tokenize_ko(news, keep = "source")
+tokens
+```
+
+본문을 직접 분석하려면 시스템에 MeCab-ko와 mecab-ko-dic을 설치하고
+`RcppMeCab` 패키지를 설치합니다.
+
+```{r, eval = FALSE}
+options(knewsr.mecab_dic = "/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ko-dic")
+tokenize_ko(news, field = "text", pos = "noun")
+```
+
+## 4. 기초 분석
+
+```{r}
+count_terms(tokens)
+count_terms(tokens, by = "source", by_doc = TRUE)
+tf_idf(tokens, by = "source")
+ngrams_ko(news, n = 2)
+```
+
+문서-단어 행렬과 공기어:
+
+```{r}
+dtm <- as_dtm(tokens, weight = "tfidf")
+dim(dtm)
+cooccurrence(tokens, top_n = 30)
+cooccurrence(tokens, window = 2, top_n = 30)
+```
+
+집단 비교(키니스)와 기간별 추이:
+
+```{r}
+k <- keyness(tokens, group = "source", target = "조선일보")
+head(k)
+trend <- term_trend(tokens, news, terms = c("대통령", "정부"), unit = "week")
+trend
+```
+
+## 5. 시각화
+
+시각화 함수는 ggplot 객체를 반환합니다. 한글 글꼴은
+`+ ggplot2::theme(text = ggplot2::element_text(family = "NanumGothic"))`처럼 지정합니다.
+
+```{r, eval = has_ggplot, fig.width = 6, fig.height = 4}
+plot_terms(count_terms(tokens), top_n = 15)
+plot_keyness(k, top_n = 10)
+plot_trend(trend)
+```
+
+`plot_wordcloud()`(ggwordcloud)와 `plot_network()`(ggraph, igraph)는 해당 패키지가
+설치된 경우에 사용할 수 있습니다.

@@ -1,0 +1,42 @@
+Package: knewsr
+Title: Preprocessing and Basic Text Mining for Korean News
+Version: 0.1.0
+Authors@R:
+  person("Jaeseong", "Choe", email = "cjssoote@gmail.com", role = c("aut", "cre"))
+Description: Collects Korean news from the Naver News Search API and RSS or
+    Atom feeds, reads news files (Excel, CSV, JSON) including exports from
+    BigKinds <https://www.bigkinds.or.kr/>, automates their preprocessing and
+    computes basic text statistics: term and
+    document frequencies, TF-IDF, sparse document-term matrices, n-grams,
+    co-occurrence, keyness between groups and term trends over time.
+License: MIT + file LICENSE
+URL: https://sorrychoe.github.io/knewsr/, https://github.com/sorrychoe/knewsr
+BugReports: https://github.com/sorrychoe/knewsr/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 4.2)
+Imports:
+    dplyr (>= 1.1.0),
+    Matrix,
+    readxl,
+    methods,
+    rlang (>= 1.1.0),
+    stats,
+    tibble
+Suggests:
+    ggplot2,
+    ggraph,
+    ggwordcloud,
+    httr2 (>= 1.1.0),
+    igraph,
+    jsonlite,
+    knitr,
+    RcppMeCab,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    xml2
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+LazyData: true
+Config/roxygen2/version: 8.1.1

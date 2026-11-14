@@ -1,0 +1,48 @@
+url: https://sorrychoe.github.io/knewsr/
+
+home:
+  title: Preprocessing and Basic Text Mining for Korean News
+
+authors:
+  Jaeseong Choe:
+    href: https://github.com/sorrychoe
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+reference:
+- title: Input
+  contents:
+  - read_news
+  - as_news
+- title: Collection
+  contents:
+  - collect_naver
+  - collect_rss
+- title: Preprocessing
+  contents:
+  - clean_news
+  - stopwords_ko
+  - tokenize_ko
+  - ngrams_ko
+- title: Analysis
+  contents:
+  - count_terms
+  - tf_idf
+  - summarise_corpus
+  - as_dtm
+  - cooccurrence
+  - keyness
+  - term_trend
+- title: Visualization
+  contents:
+  - plot_helpers
+- title: Data
+  contents:
+  - has_keyword("datasets")
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with
