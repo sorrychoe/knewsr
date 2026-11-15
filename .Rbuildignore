@@ -11,3 +11,6 @@
 ^pkgdown$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
+^README\.ko\.Rmd$
+^README\.ko\.md$
+^dev$
