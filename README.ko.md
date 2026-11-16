@@ -19,9 +19,11 @@ RSS/Atom 피드를 모두 같은 파이프라인에 넣을 수 있습니다.
 devtools::install_github("sorrychoe/knewsr")
 ```
 
-본문 형태소 분석(`tokenize_ko(field = "text")`)에는 시스템 MeCab-ko,
-mecab-ko-dic과 `RcppMeCab` 패키지가 필요합니다. BigKinds `키워드` 컬럼을
-쓰는 기본 경로는 추가 설치가 필요 없습니다. JSON 파일은 `jsonlite`,
+`tokenize_ko()`는 기본적으로 `keyword` 컬럼(BigKinds 내보내기의 `키워드`
+등)을 나누므로 형태소 분석기가 필요 없습니다. 네이버나 RSS로 수집한
+데이터처럼 키워드 컬럼이 없으면 제목이나 본문을 분석해야
+하며(`field = "title"` 또는 `"text"`), 이때는 시스템 MeCab-ko,
+mecab-ko-dic과 `RcppMeCab` 패키지가 필요합니다. JSON 파일은 `jsonlite`,
 네이버 수집은 `httr2`, RSS 수집은 `xml2`가 필요합니다. 네이버 API 키는
 `NAVER_CLIENT_ID`, `NAVER_CLIENT_SECRET` 환경변수로 설정합니다.
 

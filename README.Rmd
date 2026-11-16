@@ -27,9 +27,11 @@ knewsr is not on CRAN yet. Install the development version from GitHub:
 devtools::install_github("sorrychoe/knewsr")
 ```
 
-Morphological analysis of article bodies (`tokenize_ko(field = "text")`)
-needs the MeCab-ko system library, mecab-ko-dic and the `RcppMeCab` package.
-The default path, which uses the BigKinds keyword column, needs nothing extra.
+By default, `tokenize_ko()` splits the `keyword` column (such as the keyword
+lists in BigKinds exports) and needs no morphological analyser. Data without a
+keyword column, such as Naver or RSS collections, must be tokenized from the
+title or body (`field = "title"` or `"text"`), which needs the MeCab-ko system
+library, mecab-ko-dic and the `RcppMeCab` package.
 Reading JSON files needs `jsonlite`, collecting from Naver needs `httr2` and
 collecting RSS needs `xml2`. Set the Naver API keys in the `NAVER_CLIENT_ID`
 and `NAVER_CLIENT_SECRET` environment variables.
