@@ -3,9 +3,9 @@ Title: Preprocessing and Basic Text Mining for Korean News
 Version: 0.1.0
 Authors@R:
   person("Jaeseong", "Choe", email = "cjssoote@gmail.com", role = c("aut", "cre"))
-Description: Collects Korean news from the Naver News Search API and RSS or
+Description: Collects Korean news from the 'Naver' News Search API and RSS or
     Atom feeds, reads news files (Excel, CSV, JSON) including exports from
-    BigKinds <https://www.bigkinds.or.kr/>, automates their preprocessing and
+    'BigKinds' <https://www.bigkinds.or.kr/>, automates their preprocessing and
     computes basic text statistics: term and
     document frequencies, TF-IDF, sparse document-term matrices, n-grams,
     co-occurrence, keyness between groups and term trends over time.

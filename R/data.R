@@ -7,11 +7,11 @@
 #'
 #' @format A tibble with 300 rows and 5 columns:
 #' \describe{
-#'   \item{\code{뉴스 식별자}}{BigKinds article id.}
-#'   \item{\code{일자}}{Publication date (\code{YYYYMMDD}).}
-#'   \item{\code{언론사}}{News outlet.}
-#'   \item{\code{제목}}{Article headline.}
-#'   \item{\code{키워드}}{Comma-separated keywords extracted by BigKinds.}
+#'   \item{\ifelse{latex}{news id}{뉴스 식별자}}{BigKinds article id.}
+#'   \item{\ifelse{latex}{date}{일자}}{Publication date (\code{YYYYMMDD}).}
+#'   \item{\ifelse{latex}{outlet}{언론사}}{News outlet.}
+#'   \item{\ifelse{latex}{title}{제목}}{Article headline.}
+#'   \item{\ifelse{latex}{keywords}{키워드}}{Comma-separated keywords extracted by BigKinds.}
 #' }
 #' @source BigKinds, Korea Press Foundation. \url{https://www.bigkinds.or.kr/}
 #' @keywords datasets

@@ -40,8 +40,8 @@ path <- system.file("extdata", "bigkinds_sample.xlsx", package = "knewsr")
 read_news(path)
 
 csv <- tempfile(fileext = ".csv")
-write.csv(data.frame(headline = "제목", body = "본문입니다", pubDate = "2024.01.02",
-                     press = "A일보"),
+write.csv(data.frame(headline = "\uc81c\ubaa9", body = "\ubcf8\ubb38\uc785\ub2c8\ub2e4",
+                     pubDate = "2024.01.02", press = "A\uc77c\ubcf4"),
           csv, row.names = FALSE, fileEncoding = "UTF-8")
 read_news(csv)
 }
