@@ -52,7 +52,7 @@ allows 25,000 calls per day.
 
 ``` r
 if (FALSE) { # \dontrun{
-news <- collect_naver("기준금리", n = 300)
+news <- collect_naver("\uae30\uc900\uae08\ub9ac", n = 300)
 tokenize_ko(news, field = "text")
 } # }
 ```

@@ -16,23 +16,23 @@ president_lee_2026_08
 
 A tibble with 300 rows and 5 columns:
 
-- `뉴스 식별자`:
+- 뉴스 식별자:
 
   BigKinds article id.
 
-- `일자`:
+- 일자:
 
   Publication date (`YYYYMMDD`).
 
-- `언론사`:
+- 언론사:
 
   News outlet.
 
-- `제목`:
+- 제목:
 
   Article headline.
 
-- `키워드`:
+- 키워드:
 
   Comma-separated keywords extracted by BigKinds.
 

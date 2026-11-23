@@ -1,25 +1,33 @@
 # knewsr
 
-knewsr는 한국어 뉴스 데이터의 수집과 전처리를 자동화하고,
-빈도·TF-IDF·DTM·공기어·키니스·기간별 추이 같은 기초 텍스트 분석을 몇
-줄의 R 코드로 끝내는 패키지입니다. Excel·CSV·JSON 파일(BigKinds 내보내기
-포함), 제목·본문 컬럼이 있는 어떤 data.frame, 네이버 뉴스 검색 API,
-RSS/Atom 피드를 모두 같은 파이프라인에 넣을 수 있습니다.
+[Korean](https://github.com/sorrychoe/knewsr/blob/release/README.ko.md)
+
+knewsr collects and preprocesses Korean news data and runs basic text
+analysis in a few lines of R: term frequencies, TF-IDF, document-term
+matrices, co-occurrence, keyness and term trends over time. Excel, CSV
+and JSON files (including BigKinds exports), any data frame with title
+or body columns, the Naver News Search API and RSS/Atom feeds all feed
+into the same pipeline.
 
 ## Installation
 
-아직 CRAN에 배포되지 않았습니다.
+knewsr is not on CRAN yet. Install the development version from GitHub:
 
 ``` r
 
 devtools::install_github("sorrychoe/knewsr")
 ```
 
-본문 형태소 분석(`tokenize_ko(field = "text")`)에는 시스템 MeCab-ko,
-mecab-ko-dic과 `RcppMeCab` 패키지가 필요합니다. BigKinds `키워드` 컬럼을
-쓰는 기본 경로는 추가 설치가 필요 없습니다. JSON 파일은 `jsonlite`,
-네이버 수집은 `httr2`, RSS 수집은 `xml2`가 필요합니다. 네이버 API 키는
-`NAVER_CLIENT_ID`, `NAVER_CLIENT_SECRET` 환경변수로 설정합니다.
+By default,
+[`tokenize_ko()`](https://sorrychoe.github.io/knewsr/reference/tokenize_ko.md)
+splits the `keyword` column (such as the keyword lists in BigKinds
+exports) and needs no morphological analyser. Data without a keyword
+column, such as Naver or RSS collections, must be tokenized from the
+title or body (`field = "title"` or `"text"`), which needs the MeCab-ko
+system library, mecab-ko-dic and the `RcppMeCab` package. Reading JSON
+files needs `jsonlite`, collecting from Naver needs `httr2` and
+collecting RSS needs `xml2`. Set the Naver API keys in the
+`NAVER_CLIENT_ID` and `NAVER_CLIENT_SECRET` environment variables.
 
 ## Usage
 
@@ -30,7 +38,7 @@ library(knewsr)
 news <- as_news(president_lee_2026_08) |> clean_news()
 #> Detected columns: doc_id <- `뉴스 식별자`, date <- `일자`, source <- `언론사`,
 #> title <- `제목`, keyword <- `키워드`
-# 또는 read_news("folder/"), collect_naver("검색어"), collect_rss("https://.../rss")
+# or read_news("folder/"), collect_naver("query"), collect_rss("https://.../rss")
 tokens <- tokenize_ko(news, keep = "source")
 
 count_terms(tokens)
@@ -65,17 +73,17 @@ keyness(tokens, group = "source", target = "조선일보")
 #> # ℹ 10,088 more rows
 ```
 
-| 단계 | 함수 |
+| Step | Functions |
 |----|----|
-| 입력 | [`read_news()`](https://sorrychoe.github.io/knewsr/reference/read_news.md), [`read_bigkinds()`](https://sorrychoe.github.io/knewsr/reference/read_news.md), [`as_news()`](https://sorrychoe.github.io/knewsr/reference/as_news.md) |
-| 수집 | [`collect_naver()`](https://sorrychoe.github.io/knewsr/reference/collect_naver.md), [`collect_rss()`](https://sorrychoe.github.io/knewsr/reference/collect_rss.md) |
-| 전처리 | [`clean_news()`](https://sorrychoe.github.io/knewsr/reference/clean_news.md), [`tokenize_ko()`](https://sorrychoe.github.io/knewsr/reference/tokenize_ko.md), [`ngrams_ko()`](https://sorrychoe.github.io/knewsr/reference/ngrams_ko.md), [`stopwords_ko()`](https://sorrychoe.github.io/knewsr/reference/stopwords_ko.md) |
-| 분석 | [`count_terms()`](https://sorrychoe.github.io/knewsr/reference/count_terms.md), [`tf_idf()`](https://sorrychoe.github.io/knewsr/reference/tf_idf.md), [`as_dtm()`](https://sorrychoe.github.io/knewsr/reference/as_dtm.md), [`as_tdm()`](https://sorrychoe.github.io/knewsr/reference/as_dtm.md), [`cooccurrence()`](https://sorrychoe.github.io/knewsr/reference/cooccurrence.md), [`keyness()`](https://sorrychoe.github.io/knewsr/reference/keyness.md), [`term_trend()`](https://sorrychoe.github.io/knewsr/reference/term_trend.md), [`summarise_corpus()`](https://sorrychoe.github.io/knewsr/reference/summarise_corpus.md) |
-| 시각화 | [`plot_terms()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md), [`plot_keyness()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md), [`plot_trend()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md), [`plot_wordcloud()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md), [`plot_network()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md) |
+| Input | [`read_news()`](https://sorrychoe.github.io/knewsr/reference/read_news.md), [`read_bigkinds()`](https://sorrychoe.github.io/knewsr/reference/read_news.md), [`as_news()`](https://sorrychoe.github.io/knewsr/reference/as_news.md) |
+| Collection | [`collect_naver()`](https://sorrychoe.github.io/knewsr/reference/collect_naver.md), [`collect_rss()`](https://sorrychoe.github.io/knewsr/reference/collect_rss.md) |
+| Preprocessing | [`clean_news()`](https://sorrychoe.github.io/knewsr/reference/clean_news.md), [`tokenize_ko()`](https://sorrychoe.github.io/knewsr/reference/tokenize_ko.md), [`ngrams_ko()`](https://sorrychoe.github.io/knewsr/reference/ngrams_ko.md), [`stopwords_ko()`](https://sorrychoe.github.io/knewsr/reference/stopwords_ko.md) |
+| Analysis | [`count_terms()`](https://sorrychoe.github.io/knewsr/reference/count_terms.md), [`tf_idf()`](https://sorrychoe.github.io/knewsr/reference/tf_idf.md), [`as_dtm()`](https://sorrychoe.github.io/knewsr/reference/as_dtm.md), [`as_tdm()`](https://sorrychoe.github.io/knewsr/reference/as_dtm.md), [`cooccurrence()`](https://sorrychoe.github.io/knewsr/reference/cooccurrence.md), [`keyness()`](https://sorrychoe.github.io/knewsr/reference/keyness.md), [`term_trend()`](https://sorrychoe.github.io/knewsr/reference/term_trend.md), [`summarise_corpus()`](https://sorrychoe.github.io/knewsr/reference/summarise_corpus.md) |
+| Visualization | [`plot_terms()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md), [`plot_keyness()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md), [`plot_trend()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md), [`plot_wordcloud()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md), [`plot_network()`](https://sorrychoe.github.io/knewsr/reference/plot_helpers.md) |
 
-자세한 흐름은
-[`vignette("getting-started", package = "knewsr")`](https://sorrychoe.github.io/knewsr/articles/getting-started.md)를
-참고하세요.
+See
+[`vignette("getting-started", package = "knewsr")`](https://sorrychoe.github.io/knewsr/articles/getting-started.md)
+for the full workflow.
 
 ## License
 
@@ -83,5 +91,5 @@ keyness(tokens, group = "source", target = "조선일보")
 
 ## Issues
 
-사용 중 문제 발생 시 [GitHub
-이슈](https://github.com/sorrychoe/knewsr/issues)에 등록해주세요.
+Please report problems on [GitHub
+issues](https://github.com/sorrychoe/knewsr/issues).

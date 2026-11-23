@@ -63,7 +63,7 @@ reported in a message. A column you name must exist; `NA` skips a field.
 At least one of `text` and `keyword` is required.
 
 Dates are parsed element by element from `YYYY-MM-DD`, `YYYY.MM.DD`,
-`YYYY/MM/DD`, `YYYYMMDD`, Korean `YYYY년 M월 D일` and RFC 822
+`YYYY/MM/DD`, `YYYYMMDD`, Korean YYYY년 M월 D일 and RFC 822
 (`Mon, 02 Jan 2024 13:05:00 +0900`, as in RSS) forms, with or without a
 time; the calendar date as written is kept. Values that cannot be parsed
 become `NA` with a warning.
@@ -74,8 +74,8 @@ become `NA` with a warning.
 df <- data.frame(
   headline = c("first", "second", "second"),
   body = c("first article", "second article", "second article"),
-  published = c("2024.01.01", "2024년 1월 2일", "2024년 1월 2일"),
-  media = "A일보"
+  published = c("2024.01.01", "2024\ub144 1\uc6d4 2\uc77c", "2024\ub144 1\uc6d4 2\uc77c"),
+  media = "A\uc77c\ubcf4"
 )
 as_news(df, dedup = TRUE)
 #> Detected columns: date <- `published`, source <- `media`, title <- `headline`, text <- `body`
