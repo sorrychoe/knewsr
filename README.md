@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# knewsr
+# knewsr <a href="https://sorrychoe.github.io/knewsr/"><img src="man/figures/logo.png" align="right" height="139" alt="knewsr website" /></a>
 
 [한국어](https://github.com/sorrychoe/knewsr/blob/release/README.ko.md)
 
