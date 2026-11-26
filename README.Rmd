@@ -8,9 +8,9 @@ output: github_document
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
-# knewsr
+# knewsr <a href="https://sorrychoe.github.io/knewsr/"><img src="man/figures/logo.png" align="right" height="139" alt="knewsr website" /></a>
 
-[Korean](https://github.com/sorrychoe/knewsr/blob/release/README.ko.md)
+[한국어](https://github.com/sorrychoe/knewsr/blob/release/README.ko.md)
 
 knewsr collects and preprocesses Korean news data and runs basic text
 analysis in a few lines of R: term frequencies, TF-IDF, document-term
